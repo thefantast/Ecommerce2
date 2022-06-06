@@ -1,3 +1,7 @@
 {
-    "preset": ["next/babel", "@babel/preset-react"]
+    "presets": ["@babel/preset-react"]
 }
+
+// to install @babel/preset-react go to terminal
+// run -- npm install --save-dev @babel/preset-react
+
