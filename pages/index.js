@@ -1,22 +1,25 @@
 import React from 'react';
 
+import { client } from '../lib/client';
 import { Product, FooterBanner, HeroBanner } from '../components';
 
+//get the data as props from the bottom in the home
 
-
-const Home = () => (
+const Home = ({ products, bannerData }) => (
   
     <div>
 
-      <HeroBanner />
-
+      <HeroBanner heroBanner={bannerData.length && bannerData[0]} />
+        {console.log(bannerData)}
       <div className="products-heading">
         <h2>Best selling pictures</h2>
         <p>Pictures of many</p>
       </div>
 
+    {/*loop over the products*/}
+
       <div className="products-container">
-        {['Product 1', 'Product 2'].map((product) => product)}
+        {products?.map((product) => product.name)}
       </div>
 
       <FooterBanner/>
@@ -24,5 +27,19 @@ const Home = () => (
     </div>
   
 );
+
+// is like useEffect to fetch Data for Next.js
+
+export const getServerSideProps = async () => {
+  const query = '*[_type == "product"]';
+  const products = await client.fetch(query);
+
+  const bannerQuery = '*[_type == "banner"]';
+  const bannerData = await client.fetch(bannerQuery);
+
+  return {
+    props: { products, bannerData }
+  }
+}
 
 export default Home;
