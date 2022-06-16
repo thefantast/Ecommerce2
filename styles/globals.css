@@ -251,6 +251,14 @@ text-align: end;
   top: -25%;
   left: 25%;
 }
+
+.footer-image{
+  width: 300px;
+  height: 300px;
+
+}
+
+
 .banner-desc .right{
   line-height: 1.4;
 }
